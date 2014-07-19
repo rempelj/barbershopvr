@@ -12,4 +12,17 @@ public class PlayerHead : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	void OnTriggerEnter (Collider other) {
+		var scissors = other.transform.root.GetComponent<Scissors>();
+		
+		if (scissors != null)
+		{
+			scissors.stopped = true;
+			scissors.transform.root.parent = transform;
+			// play stab sfx
+			Debug.Log("stabbed");
+		}
+		
+	}
 }

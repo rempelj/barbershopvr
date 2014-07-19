@@ -6,6 +6,7 @@ public class Scissors : MonoBehaviour {
 	public Animation snipAnimation;
 	
 	public float snipRate;
+	public bool stopped;
 	
 	private float lastSnipTime;
 
@@ -15,7 +16,7 @@ public class Scissors : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > lastSnipTime + snipRate) {
+		if (!stopped && Time.time > lastSnipTime + snipRate) {
 			lastSnipTime = Time.time;
 			Snip();
 		}
