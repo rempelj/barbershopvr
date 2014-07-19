@@ -28,6 +28,6 @@ public class Scissors : MonoBehaviour {
 	public void Snip()
 	{
 		snipAnimation.Play();
-		// play sfx
+		snipSound.Play();
 	}
 }
