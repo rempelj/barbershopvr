@@ -8,6 +8,9 @@ public class Scissors : MonoBehaviour {
 	public float snipRate;
 	public bool stopped;
 	
+	public AudioSource stabSound;
+	public AudioSource snipSound;
+	
 	private float lastSnipTime;
 
 	// Use this for initialization

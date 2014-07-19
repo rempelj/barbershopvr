@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerHead : MonoBehaviour {
 
+	public AudioSource hurtSound;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -20,7 +22,8 @@ public class PlayerHead : MonoBehaviour {
 		{
 			scissors.stopped = true;
 			scissors.transform.root.parent = transform;
-			// play stab sfx
+			scissors.stabSound.Play();
+			hurtSound.Play();
 			Debug.Log("stabbed");
 		}
 		
