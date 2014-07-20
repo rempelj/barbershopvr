@@ -6,6 +6,10 @@ public class PlayerHead : MonoBehaviour {
 	public AudioSource hurtSound;
 	public Transform Blood;
 
+	void Awake() {
+		Physics.IgnoreLayerCollision(8,9, true);
+	}
+
 	// Use this for initialization
 	void Start () {
 

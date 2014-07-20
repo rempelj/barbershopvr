@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Scissors : MonoBehaviour {
 
 	public Animation snipAnimation;
-	
 	public float snipRate;
+	public GameObject hairContainer;
+	
+	private List<Hair> allHairs;
+	private Hair currentTarget;
 	
 	private bool mStopped;
 	public bool stopped {
@@ -21,6 +25,15 @@ public class Scissors : MonoBehaviour {
 	
 	private float lastSnipTime;
 
+	void Awake() {
+		allHairs = new List<Hair>();
+		
+		var children = hairContainer.GetComponentsInChildren<Transform>();
+		foreach (var child in children) {
+			allHairs.AddRange(child.GetComponentsInChildren<Hair>());
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -31,6 +44,18 @@ public class Scissors : MonoBehaviour {
 			lastSnipTime = Time.time;
 			Snip();
 		}
+		
+		if (currentTarget == null) {
+			var rnd = new System.Random();
+			int index = rnd.Next(0, allHairs.Count);
+			currentTarget = allHairs[index];
+			allHairs.RemoveAt(index);
+		} 
+		
+		if (!stopped)
+			transform.position = Vector3.Lerp(transform.position, currentTarget.transform.position, 3 * Time.deltaTime);
+		
+		
 	}
 	
 	public void Snip()
