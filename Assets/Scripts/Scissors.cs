@@ -12,7 +12,7 @@ public class Scissors : MonoBehaviour {
 		get { return mStopped; }
 		set { 
 			mStopped = value;
-			snipAnimation.enabled=value;
+			snipAnimation.enabled= !value;
 		}
 	}
 	
