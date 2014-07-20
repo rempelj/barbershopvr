@@ -5,6 +5,7 @@ public class PlayerHead : MonoBehaviour {
 
 	public AudioSource hurtSound;
 	public Transform Blood;
+	public ScissorSpawner scissorSpawner;
 
 	void Awake() {
 
@@ -32,7 +33,8 @@ public class PlayerHead : MonoBehaviour {
 			scissors.transform.root.parent = transform;
 			scissors.stabSound.Play();
 			hurtSound.Play();
-			Debug.Log("stabbed");
+			
+			scissorSpawner.Spawn();
 
 			Transform blood = Instantiate(Blood, scissors.transform.position, scissors.transform.rotation) as Transform;
 			blood.transform.parent = transform;

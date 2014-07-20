@@ -26,16 +26,24 @@ public class Scissors : MonoBehaviour {
 	private float lastSnipTime;
 
 	void Awake() {
-		allHairs = new List<Hair>();
 		
-		var children = hairContainer.GetComponentsInChildren<Transform>();
-		foreach (var child in children) {
-			allHairs.AddRange(child.GetComponentsInChildren<Hair>());
-		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		allHairs = new List<Hair>();
+		
+		var children = hairContainer.GetComponentsInChildren<Transform>();
+		foreach (var child in children) {
+			var row = child.GetComponentsInChildren<Hair>();
+			
+			foreach (var hair in row) {
+				if (!hair.cut)
+					allHairs.Add(hair);
+			}
+			
+			
+		}
 	}
 	
 	// Update is called once per frame
@@ -45,19 +53,20 @@ public class Scissors : MonoBehaviour {
 			Snip();
 		}
 		
-		if (currentTarget == null) {
+		if (currentTarget == null && allHairs.Count > 0) {
 			var rnd = new System.Random();
 			int index = rnd.Next(0, allHairs.Count);
 			currentTarget = allHairs[index];
 			allHairs.RemoveAt(index);
 		} 
 		
-		if (!stopped)
-		{
-			transform.position = Vector3.Lerp(transform.position, currentTarget.transform.position, 3 * Time.deltaTime);
-			transform.LookAt(currentTarget.transform);
+		if (currentTarget != null) {
+			if (!stopped)
+			{
+				transform.position = Vector3.Lerp(transform.position, currentTarget.transform.position, 3 * Time.deltaTime);
+				transform.LookAt(currentTarget.transform);
+			}
 		}
-		
 	}
 	
 	void OnTriggerStay(Collider other) {	
@@ -65,6 +74,7 @@ public class Scissors : MonoBehaviour {
 		if (hair != null && snipAnimation.isPlaying) {
 			other.gameObject.rigidbody.useGravity = true;
 			allHairs.Remove(hair);
+			hair.cut = true;
 			currentTarget = null;
 		}
 	}

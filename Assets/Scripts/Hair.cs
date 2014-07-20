@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Hair : MonoBehaviour {
 
+	[HideInInspector]
+	public bool cut;
+
 	// Use this for initialization
 	void Start () {
 	
