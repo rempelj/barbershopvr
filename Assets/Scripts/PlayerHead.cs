@@ -4,10 +4,11 @@ using System.Collections;
 public class PlayerHead : MonoBehaviour {
 
 	public AudioSource hurtSound;
+	public Transform Blood;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -25,6 +26,9 @@ public class PlayerHead : MonoBehaviour {
 			scissors.stabSound.Play();
 			hurtSound.Play();
 			Debug.Log("stabbed");
+
+			Transform blood = Instantiate(Blood, scissors.transform.position, scissors.transform.rotation) as Transform;
+			blood.transform.parent = transform;
 		}
 		
 	}
