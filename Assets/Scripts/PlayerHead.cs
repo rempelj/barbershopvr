@@ -7,7 +7,7 @@ public class PlayerHead : MonoBehaviour {
 	public Transform Blood;
 
 	void Awake() {
-		Physics.IgnoreLayerCollision(8,9, true);
+
 	}
 
 	// Use this for initialization
@@ -21,6 +21,9 @@ public class PlayerHead : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider other) {
+		if (other.gameObject.layer == 8)
+			return;
+	
 		var scissors = other.transform.root.GetComponent<Scissors>();
 		
 		if (scissors != null)

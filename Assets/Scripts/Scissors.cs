@@ -53,9 +53,20 @@ public class Scissors : MonoBehaviour {
 		} 
 		
 		if (!stopped)
+		{
 			transform.position = Vector3.Lerp(transform.position, currentTarget.transform.position, 3 * Time.deltaTime);
+			transform.LookAt(currentTarget.transform);
+		}
 		
-		
+	}
+	
+	void OnTriggerStay(Collider other) {	
+		var hair = other.transform.GetComponent<Hair>();
+		if (hair != null && snipAnimation.isPlaying) {
+			other.gameObject.rigidbody.useGravity = true;
+			allHairs.Remove(hair);
+			currentTarget = null;
+		}
 	}
 	
 	public void Snip()
