@@ -1,22 +1,4 @@
-﻿/*
-using UnityEngine;
-using System.Collections;
-
-public class MirrorReflection : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-}
-*/
-
-// From wiki.unity3d.com/index.php/MirrorReflection3
+﻿// From wiki.unity3d.com/index.php/MirrorReflection3
 
 using UnityEngine;
 using System.Collections;
