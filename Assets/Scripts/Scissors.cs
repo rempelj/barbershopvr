@@ -6,7 +6,15 @@ public class Scissors : MonoBehaviour {
 	public Animation snipAnimation;
 	
 	public float snipRate;
-	public bool stopped;
+	
+	private bool mStopped;
+	public bool stopped {
+		get { return mStopped; }
+		set { 
+			mStopped = value;
+			snipAnimation.enabled=false;
+		}
+	}
 	
 	public AudioSource stabSound;
 	public AudioSource snipSound;
