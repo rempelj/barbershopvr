@@ -26,7 +26,7 @@ public class Scissors : MonoBehaviour {
 	private float lastSnipTime;
 
 	void Awake() {
-		
+	
 	}
 
 	// Use this for initialization
